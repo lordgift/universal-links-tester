@@ -12,6 +12,10 @@ PORT=8080 npm start
 
 ต้องใช้ Node 20 ขึ้นไป ไม่มี dependency
 
+## Deploy บน Vercel
+
+Vercel ไม่รัน `server.js` แต่จะเสิร์ฟ `public/` เป็น static และใช้ `api/check.js` เป็น serverless function แทน (logic อยู่ใน `lib/check.js` ใช้ร่วมกัน) ตั้ง Framework Preset เป็น **Other** ไม่ต้องมี build command
+
 แชร์ผลตรวจได้ด้วย URL แบบ `http://localhost:3000/?domain=example.com`
 
 ## สิ่งที่ตรวจ

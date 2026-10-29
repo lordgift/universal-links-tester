@@ -718,6 +718,9 @@ async function check(value) {
 
   try {
     const res = await fetch(`/api/check?domain=${encodeURIComponent(raw)}`);
+    if (!res.headers.get('content-type')?.includes('application/json')) {
+      throw new Error(`API ตอบ HTTP ${res.status} ที่ไม่ใช่ JSON (ตรวจว่า /api/check ถูก deploy แล้ว)`);
+    }
     const data = await res.json();
     if (!res.ok) throw new Error(data.error ?? `HTTP ${res.status}`);
     input.value = data.initialPath ? `${data.domain}${data.initialPath}` : data.domain;
