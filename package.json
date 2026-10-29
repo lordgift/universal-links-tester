@@ -1,0 +1,14 @@
+{
+  "name": "universal-links-tester",
+  "version": "1.0.0",
+  "private": true,
+  "description": "ตรวจสอบไฟล์ .well-known สำหรับ iOS Universal Links และ Android App Links พร้อมสถานะการ propagate ไปยัง Apple CDN และ Google",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  }
+}

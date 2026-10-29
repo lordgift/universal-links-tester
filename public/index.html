@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Universal Links Tester</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Thai:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <main class="container">
+    <header class="hero">
+      <h1>Universal Links Tester</h1>
+      <p class="lede">
+        ตรวจไฟล์ <code>.well-known</code> ของ iOS Universal Links และ Android App Links
+        แล้วดูว่า Apple CDN กับ Google ดึงไฟล์เวอร์ชันล่าสุดไปแล้วหรือยัง
+      </p>
+    </header>
+
+    <form id="check-form" class="check-form" autocomplete="off">
+      <label for="domain" class="visually-hidden">โดเมน</label>
+      <input id="domain" name="domain" type="text" inputmode="url" placeholder="example.com"
+             autocapitalize="off" spellcheck="false" required>
+      <button type="submit">ตรวจสอบ</button>
+    </form>
+    <p class="hint">ใส่โดเมนหรือ URL ก็ได้ เช่น <code>example.com</code> หรือ <code>https://www.example.com/path</code></p>
+
+    <div id="results" aria-live="polite"></div>
+
+    <footer class="about">
+      <h2>สิ่งที่ตรวจ</h2>
+      <dl>
+        <dt>iOS · ไฟล์บนเว็บ</dt>
+        <dd><code>https://&lt;domain&gt;/.well-known/apple-app-site-association</code>: ต้องได้ 200 โดยไม่ redirect, เป็น JSON ที่ถูกต้อง, ขนาดไม่เกิน 128 KB และมี <code>applinks</code></dd>
+        <dt>iOS · Apple CDN</dt>
+        <dd><code>https://app-site-association.cdn-apple.com/a/v1/&lt;domain&gt;</code>: อุปกรณ์ iOS ดึงไฟล์จากที่นี่ ไม่ได้ดึงจากเว็บตรงๆ จึงต้องเช็คว่าเนื้อหาตรงกับไฟล์บนเว็บแล้วหรือยัง</dd>
+        <dt>Android · ไฟล์บนเว็บ</dt>
+        <dd><code>https://&lt;domain&gt;/.well-known/assetlinks.json</code>: ต้องได้ 200 โดยไม่ redirect, เป็น <code>application/json</code> และมี statement <code>handle_all_urls</code></dd>
+        <dt>Android · Google API</dt>
+        <dd><code>digitalassetlinks.googleapis.com/v1/statements:list</code>: ดูว่า Google อ่านไฟล์ได้และเห็น package / fingerprint ตรงกับไฟล์บนเว็บ</dd>
+      </dl>
+    </footer>
+  </main>
+  <script src="/app.js" type="module"></script>
+</body>
+</html>
