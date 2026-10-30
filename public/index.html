@@ -29,6 +29,93 @@
 
     <div id="results" aria-live="polite"></div>
 
+    <section class="flow" aria-labelledby="flow-title">
+      <div class="flow-head">
+        <div>
+          <h2 id="flow-title">เบื้องหลังการเปิดลิงก์</h2>
+          <p class="flow-lede">ดูว่า request วิ่งไปที่ไหนบ้าง ตั้งแต่ติดตั้งแอปจนผู้ใช้แตะลิงก์</p>
+        </div>
+        <div class="flow-tabs" role="tablist" aria-label="แพลตฟอร์ม">
+          <button type="button" role="tab" data-platform="ios" aria-selected="true">iOS</button>
+          <button type="button" role="tab" data-platform="android" aria-selected="false">Android</button>
+        </div>
+      </div>
+
+      <div class="flow-body">
+        <div class="flow-stage-wrap">
+        <svg class="flow-stage" viewBox="0 0 820 340" role="img" aria-labelledby="flow-step-title">
+          <path class="wire" data-wire="sys-relay" d="M165 120 H300"/>
+          <path class="wire" data-wire="relay-origin" d="M540 120 H620"/>
+          <path class="wire wire-dashed" data-wire="browser-origin" d="M165 242 H710 V152"/>
+
+          <g class="node node-device" data-node="device">
+            <rect x="30" y="60" width="150" height="260" rx="26"/>
+            <text x="105" y="83" class="node-title" data-text="device"></text>
+          </g>
+          <g class="node" data-node="system">
+            <rect x="45" y="95" width="120" height="50" rx="10"/>
+            <text x="105" y="117" class="node-title">ระบบ</text>
+            <text x="105" y="135" class="node-sub" data-text="system"></text>
+          </g>
+          <g class="node" data-node="app">
+            <rect x="45" y="220" width="56" height="44" rx="10"/>
+            <text x="73" y="247" class="node-title">แอป</text>
+          </g>
+          <g class="node" data-node="browser">
+            <rect x="109" y="220" width="56" height="44" rx="10"/>
+            <text x="137" y="246" class="node-sub" data-text="browser"></text>
+          </g>
+          <g class="node" data-node="relay">
+            <rect x="300" y="88" width="240" height="64" rx="12"/>
+            <text x="420" y="115" class="node-title" data-text="relayTitle"></text>
+            <text x="420" y="135" class="node-sub node-mono" data-text="relaySub"></text>
+          </g>
+          <g class="node" data-node="origin">
+            <rect x="620" y="88" width="180" height="64" rx="12"/>
+            <text x="710" y="115" class="node-title">เว็บของคุณ</text>
+            <text x="710" y="135" class="node-sub node-mono" data-text="domain"></text>
+          </g>
+
+          <text x="437" y="262" class="wire-note">ถ้าไม่เปิดแอป → โหลดหน้าเว็บตามปกติ</text>
+
+          <g class="tag tag-cache" data-tag="cache">
+            <rect x="370" y="160" width="100" height="22" rx="11"/>
+            <text x="420" y="175">แคชไว้แล้ว</text>
+          </g>
+          <g class="tag tag-rules" data-tag="rules">
+            <rect x="50" y="153" width="110" height="22" rx="11"/>
+            <text x="105" y="168" data-text="rulesTag"></text>
+          </g>
+
+          <g class="chip" data-tag="chip">
+            <rect x="30" y="14" height="26" rx="13"/>
+            <text x="44" y="32" data-text="link"></text>
+          </g>
+
+          <g class="packet-label" hidden>
+            <rect rx="6"/>
+            <text></text>
+          </g>
+          <circle class="packet" r="7" hidden/>
+        </svg>
+        </div>
+
+        <div class="flow-side">
+          <div class="flow-caption" aria-live="polite">
+            <p class="flow-phase" id="flow-phase"></p>
+            <h3 id="flow-step-title"></h3>
+            <p id="flow-step-text"></p>
+          </div>
+          <div class="flow-controls">
+            <button type="button" data-action="prev" aria-label="ขั้นก่อนหน้า">‹</button>
+            <button type="button" data-action="play" class="flow-play">▶ เล่น</button>
+            <button type="button" data-action="next" aria-label="ขั้นถัดไป">›</button>
+          </div>
+          <div class="flow-steps" id="flow-steps"></div>
+        </div>
+      </div>
+    </section>
+
     <footer class="about">
       <h2>สิ่งที่ตรวจ</h2>
       <dl>
@@ -44,5 +131,6 @@
     </footer>
   </main>
   <script src="/app.js" type="module"></script>
+  <script src="/flow.js" type="module"></script>
 </body>
 </html>
