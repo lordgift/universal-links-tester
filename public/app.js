@@ -99,7 +99,7 @@ function renderRecent() {
   recentBar.hidden = false;
   recentBar.replaceChildren(
     el('span', { class: 'quick-label' }, 'ล่าสุด:'),
-    list.map((d) =>
+    ...list.map((d) =>
       el('button', {
         type: 'button',
         class: 'chip',
@@ -627,7 +627,8 @@ function card(title, tagLabel, rep, renderSummary, compareTabFn = null) {
 function renderResults(data) {
   const shareUrl = `${location.origin}/?domain=${encodeURIComponent(data.domain)}`;
 
-  results.replaceChildren(
+  // replaceChildren ไม่กรอง null/false ให้เหมือน el() จึงกรองเองก่อน
+  results.replaceChildren(...[
     // Top Result Bar
     el('div', { class: 'result-header' },
       el('div', { class: 'result-domain-info' },
@@ -691,7 +692,7 @@ function renderResults(data) {
         ),
       ),
     ),
-  );
+  ].filter(Boolean));
 }
 
 // ---------- Check Action ----------
